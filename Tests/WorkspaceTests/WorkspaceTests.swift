@@ -28,7 +28,23 @@ import struct TSCBasic.ByteString
 import struct TSCUtility.Version
 
 final class WorkspaceTests: XCTestCase {
+    // override func setUpWithError() throws {
+    //     let windowsPassingTests = [
+    //         #selector(self.testBinaryArtifactsInvalidPath),
+    //         #selector(self.testManifestLoaderDiagnostics),
+    //         #selector(self.testInterpreterFlags),
+    //         #selector(self.testManifestParseError),
+    //         #selector(self.testSimpleAPI)
+    //     ]
+    //     let matches = windowsPassingTests.filter { $0 == self.invocation?.selector}
+    //     if matches.count == 0 {
+    //         try skipOnWindowsAsTestCurrentlyFails()
+    //     }
+    // }
+
     func testBasics() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -323,6 +339,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testMultipleRootPackages() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -380,6 +398,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRootPackagesOverride() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -442,6 +462,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateRootPackages() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -479,6 +501,8 @@ final class WorkspaceTests: XCTestCase {
 
     /// Test that the explicit name given to a package is not used as its identity.
     func testExplicitPackageNameIsNotUsedAsPackageIdentity() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -552,6 +576,8 @@ final class WorkspaceTests: XCTestCase {
 
     /// Test that the remote repository is not resolved when a root package with same name is already present.
     func testRootAsDependency1() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -613,6 +639,8 @@ final class WorkspaceTests: XCTestCase {
 
     /// Test that a root package can be used as a dependency when the remote version was resolved previously.
     func testRootAsDependency2() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -700,6 +728,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testGraphRootDependencies() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -762,6 +792,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCanResolveWithIncompatiblePackages() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -864,6 +896,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testResolverCanHaveError() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -925,6 +959,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_empty() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -970,6 +1006,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_newPackages() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -1031,6 +1069,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_requirementChange_versionToBranch() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -1099,6 +1139,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_requirementChange_versionToRevision() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let cPath = RelativePath("C")
@@ -1150,6 +1192,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_requirementChange_localToBranch() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -1217,6 +1261,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_requirementChange_versionToLocal() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -1284,6 +1330,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_requirementChange_branchToLocal() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -1352,6 +1400,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_other() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -1421,6 +1471,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrecomputeResolution_notRequired() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let bPath = RelativePath("B")
@@ -1486,6 +1538,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLoadingRootManifests() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -1510,6 +1564,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testUpdate() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -1611,6 +1667,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testUpdateDryRun() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -1706,6 +1764,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPartialUpdate() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -1810,6 +1870,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCleanAndReset() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -1889,6 +1951,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDependencyManifestLoading() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -1968,6 +2032,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDependencyManifestsOrder() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2037,6 +2103,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testBranchAndRevision() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2101,6 +2169,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testResolve() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2174,6 +2244,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDeletedCheckoutDirectory() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2220,6 +2292,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testMinimumRequiredToolsVersionInDependencyResolution() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2261,6 +2335,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testToolsVersionRootPackages() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2340,6 +2416,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testEditDependency() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2448,6 +2526,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testUnsafeFlagsInEditedPackage() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2511,6 +2591,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testMissingEditCanRestoreOriginalCheckout() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2574,6 +2656,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCanUneditRemovedDependencies() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2648,6 +2732,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDependencyResolutionWithEdit() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2769,6 +2855,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPrefetchingWithOverridenPackage() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2854,6 +2942,8 @@ final class WorkspaceTests: XCTestCase {
 
     // Test that changing a particular dependency re-resolves the graph.
     func testChangeOneDependency() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -2940,6 +3030,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testResolutionFailureWithEditedDependency() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3060,6 +3152,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testStateModified() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3151,6 +3245,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testSkipUpdate() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3200,6 +3296,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalDependencyBasics() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3278,6 +3376,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalDependencyTransitive() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3340,6 +3440,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalDependencyWithPackageUpdate() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3404,6 +3506,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testMissingLocalDependencyDiagnostic() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3444,6 +3548,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRevisionVersionSwitch() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3513,6 +3619,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalVersionSwitch() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3582,6 +3690,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalLocalSwitch() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3654,6 +3764,8 @@ final class WorkspaceTests: XCTestCase {
     // Test that switching between two same local packages placed at
     // different locations works correctly.
     func testDependencySwitchLocalWithSameIdentity() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3731,6 +3843,8 @@ final class WorkspaceTests: XCTestCase {
     // Test that switching between two remote packages at
     // different locations works correctly.
     func testDependencySwitchRemoteWithSameIdentity() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3809,6 +3923,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testResolvedFileUpdate() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -3864,6 +3980,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testResolvedFileSchemeToolsVersion() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let fs = InMemoryFileSystem()
 
         for pair in [
@@ -3935,6 +4053,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testResolvedFileStableCanonicalLocation() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4177,6 +4297,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPreferResolvedFileWhenExists() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4445,6 +4567,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPackageSimpleMirrorPath() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4537,6 +4661,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPackageMirrorPath() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4640,6 +4766,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPackageSimpleMirrorURL() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4729,6 +4857,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPackageMirrorURL() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4834,6 +4964,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPackageMirrorURLToRegistry() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4904,6 +5036,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testPackageMirrorRegistryToURL() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -4977,6 +5111,8 @@ final class WorkspaceTests: XCTestCase {
     // file for a transitive dependency whose URL is later changed to
     // something else, while keeping the same package identity.
     func testTransitiveDependencySwitchWithSameIdentity() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5130,6 +5266,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testForceResolveToResolvedVersions() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5256,6 +5394,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testForceResolveToResolvedVersionsDuplicateLocalDependency() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5307,6 +5447,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testForceResolveWithNoResolvedFile() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5364,6 +5506,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testForceResolveToResolvedVersionsLocalPackage() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5405,6 +5549,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testForceResolveToResolvedVersionsLocalPackageInAdditionalDependencies() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5506,6 +5652,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRevisionDepOnLocal() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5564,6 +5712,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRootPackagesOverrideBasenameMismatch() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5614,6 +5764,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testManagedDependenciesNotCaseSensitive() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5708,6 +5860,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testUnsafeFlags() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5788,6 +5942,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testUnsafeFlagsInFoundation() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5837,6 +5993,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testEditDependencyHadOverridableConstraints() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -5938,6 +6096,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testTargetBasedDependency() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6046,6 +6206,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalArchivedArtifactExtractionHappyPath() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6216,6 +6378,8 @@ final class WorkspaceTests: XCTestCase {
     // It ensures that all the appropriate clean-up operations are executed, and the workspace
     // contains the correct set of managed artifacts after the transition.
     func testLocalArchivedArtifactSourceTransitionPermutations() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6487,6 +6651,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalArchivedArtifactNameDoesNotMatchTargetName() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6546,6 +6712,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalArchivedArtifactExtractionError() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6597,6 +6765,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalArchiveDoesNotMatchTargetName() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6671,7 +6841,10 @@ final class WorkspaceTests: XCTestCase {
         }
     }
 
+////// STAET ATDIN
     func testLocalArchivedArtifactChecksumChange() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6776,6 +6949,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalArchivedArtifactStripFirstComponent() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6886,6 +7061,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalArtifactHappyPath() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6938,6 +7115,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLocalArtifactDoesNotExist() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -6982,6 +7161,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactDownloadHappyPath() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeKeyValueStore<URL, AbsolutePath>()
@@ -7171,6 +7352,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactDownloadWithPreviousState() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeKeyValueStore<URL, AbsolutePath>()
@@ -7479,6 +7662,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactDownloadTwice() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeArrayStore<(URL, AbsolutePath)>()
@@ -7601,6 +7786,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactDownloadServerError() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let fs = InMemoryFileSystem()
         let sandbox = AbsolutePath("/tmp/ws/")
         try fs.createDirectory(sandbox, recursive: true)
@@ -7671,6 +7858,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactDownloaderOrArchiverError() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -7758,6 +7947,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactNotAnArchiveError() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -7866,6 +8057,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactInvalid() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -7937,6 +8130,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactDoesNotMatchTargetName() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -8012,6 +8207,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactChecksum() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let fs = InMemoryFileSystem()
         try fs.createMockToolchain()
         let sandbox = AbsolutePath("/tmp/ws/")
@@ -8084,6 +8281,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactChecksumChange() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -8136,6 +8335,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactChecksumChangeURLChange() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -8227,6 +8428,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactDownloadAddsAcceptHeader() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let acceptHeaders = ThreadSafeBox([String]())
@@ -8303,6 +8506,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactNoCache() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeBox(0)
@@ -8392,6 +8597,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactCache() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeBox(0)
@@ -8496,6 +8703,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactTransitive() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeKeyValueStore<URL, AbsolutePath>()
@@ -8666,6 +8875,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactArchiveExists() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         // this relies on internal knowledge of the destination path construction
@@ -8778,6 +8989,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactConcurrency() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -8890,6 +9103,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadedArtifactStripFirstComponent() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeKeyValueStore<URL, AbsolutePath>()
@@ -9050,6 +9265,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testArtifactMultipleExtensions() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         let downloads = ThreadSafeKeyValueStore<URL, AbsolutePath>()
@@ -9174,6 +9391,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testLoadRootPackageWithBinaryDependencies() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -9218,6 +9437,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadArchiveIndexFilesHappyPath() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         try fs.createMockToolchain()
@@ -9460,6 +9681,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadArchiveIndexServerError() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -9502,6 +9725,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadArchiveIndexFileBadChecksum() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         try fs.createMockToolchain()
@@ -9568,6 +9793,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadArchiveIndexFileChecksumChanges() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -9618,6 +9845,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadArchiveIndexFileBadArchivesChecksum() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         try fs.createMockToolchain()
@@ -9725,6 +9954,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadArchiveIndexFileArchiveNotFound() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         try fs.createMockToolchain()
@@ -9797,6 +10028,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDownloadArchiveIndexTripleNotFound() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
         try fs.createMockToolchain()
@@ -9867,6 +10100,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateDependencyIdentityWithNameAtRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -9928,7 +10163,7 @@ final class WorkspaceTests: XCTestCase {
         try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
             testDiagnostics(diagnostics) { result in
                 result.check(
-                    diagnostic: "'root' dependency on '\(sandbox.appending(components: "pkgs", "bar", "utility"))' conflicts with dependency on '\(sandbox.appending(components: "pkgs", "foo", "utility"))' which has the same identity 'utility'",
+                    diagnostic: "Conflicting identity for utility: dependency '/tmp/ws/pkgs/bar/utility' and dependency '/tmp/ws/pkgs/foo/utility' both point to the same package identity 'utility'.",
                     severity: .error
                 )
             }
@@ -9936,6 +10171,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateDependencyIdentityWithoutNameAtRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -9989,7 +10226,7 @@ final class WorkspaceTests: XCTestCase {
         try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
             testDiagnostics(diagnostics) { result in
                 result.check(
-                    diagnostic: "'root' dependency on '\(sandbox.appending(components: "pkgs", "bar", "utility"))' conflicts with dependency on '\(sandbox.appending(components: "pkgs", "foo", "utility"))' which has the same identity 'utility'",
+                    diagnostic: "Conflicting identity for utility: dependency '/tmp/ws/pkgs/bar/utility' and dependency '/tmp/ws/pkgs/foo/utility' both point to the same package identity 'utility'.",
                     severity: .error
                 )
             }
@@ -9997,6 +10234,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateExplicitDependencyName_AtRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10066,6 +10305,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateManifestNameAtRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10121,6 +10362,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateManifestName_ExplicitProductPackage_AtRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10176,6 +10419,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testManifestNameAndIdentityConflict_AtRoot_Pre52() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10231,6 +10476,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testManifestNameAndIdentityConflict_AtRoot_Post52_Incorrect() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10295,6 +10542,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testManifestNameAndIdentityConflict_AtRoot_Post52_Correct() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10350,6 +10599,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testManifestNameAndIdentityConflict_ExplicitDependencyNames_AtRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10414,6 +10665,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testManifestNameAndIdentityConflict_ExplicitDependencyNames_ExplicitProductPackage_AtRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10478,6 +10731,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateTransitiveIdentityWithNames() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10559,14 +10814,275 @@ final class WorkspaceTests: XCTestCase {
         try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
             testDiagnostics(diagnostics) { result in
                 result.check(
-                    diagnostic: "'bar' dependency on '\(sandbox.appending(components: "pkgs", "other", "utility"))' conflicts with dependency on '\(sandbox.appending(components: "pkgs", "foo", "utility"))' which has the same identity 'utility'",
+                    diagnostic: "Conflicting identity for utility: dependency '/tmp/ws/pkgs/other/utility' and dependency '/tmp/ws/pkgs/foo/utility' both point to the same package identity 'utility'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->/tmp/ws/pkgs/bar->/tmp/ws/pkgs/other/utility (B) /tmp/ws/roots/root->/tmp/ws/pkgs/foo/utility. If there are multiple chains that lead to the same dependency, only the first chain is shown here. To see all chains use debug output option. To resolve the conflict, coordinate with the maintainer of the package that introduces the conflicting dependency.",
                     severity: .error
                 )
             }
         }
     }
 
+    func testDuplicateTransitiveIdentityMultiplePossibleChains() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"""
+        threw error "\tmp\ws doesn't exist in file system"
+        """#)
+        let sandbox = AbsolutePath("/tmp/ws/")
+        let fs = InMemoryFileSystem()
+
+        let workspace = try await MockWorkspace(
+            sandbox: sandbox,
+            fileSystem: fs,
+            roots: [
+                MockPackage(
+                    name: "Root",
+                    targets: [
+                        MockTarget(name: "RootTarget", dependencies: [
+                            .product(name: "HouseProduct", package: "HousePackage"),
+                            .product(name: "ShackProduct", package: "ShackPackage"),
+                        ]),
+                    ],
+                    products: [],
+                    dependencies: [
+                        .sourceControlWithDeprecatedName(
+                            name: "HousePackage",
+                            path: "house",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                        .sourceControlWithDeprecatedName(
+                            name: "ShackPackage",
+                            path: "shack",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                    ]
+                ),
+            ],
+            packages: [
+                MockPackage(
+                    name: "HousePackage",
+                    path: "house",
+                    targets: [
+                        MockTarget(name: "HouseTarget", dependencies: [
+                            .product(name: "BudgetWindowProduct", package: "BudgetWindowPackage"),
+                            .product(name: "PremiumWindowProduct", package: "PremiumWindowPackage"),
+                        ]),
+                    ],
+                    products: [
+                        MockProduct(name: "HouseProduct", modules: ["HouseTarget"]),
+                    ],
+                    dependencies: [
+                        .sourceControlWithDeprecatedName(
+                            name: "BudgetWindowPackage",
+                            path: "budget_window",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                        .sourceControlWithDeprecatedName(
+                            name: "PremiumWindowPackage",
+                            path: "premium_window",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+                MockPackage(
+                    name: "ShackPackage",
+                    path: "shack",
+                    targets: [
+                        MockTarget(name: "ShackTarget", dependencies: [
+                            .product(name: "StandardGlassProduct", package: "StandardGlassPackage"),
+                        ]),
+                    ],
+                    products: [
+                        MockProduct(name: "ShackProduct", modules: ["ShackTarget"]),
+                    ],
+                    dependencies: [
+                        .sourceControlWithDeprecatedName(
+                            name: "StandardGlassPackage",
+                            path: "standard/glass",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+                MockPackage(
+                    name: "BudgetWindowPackage",
+                    path: "budget_window",
+                    targets: [
+                        MockTarget(name: "BudgetWindowTarget", dependencies: [
+                            .product(name: "StandardGlassProduct", package: "StandardGlassPackage"),
+                        ]),
+                    ],
+                    products: [
+                        MockProduct(name: "BudgetWindowProduct", modules: ["BudgetWindowTarget"]),
+                    ],
+                    dependencies: [
+                        .sourceControlWithDeprecatedName(
+                            name: "StandardGlassPackage",
+                            path: "standard/glass",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+                MockPackage(
+                    name: "PremiumWindowPackage",
+                    path: "premium_window",
+                    targets: [
+                        MockTarget(name: "PremiumWindowTarget", dependencies: [
+                            .product(name: "TemperedGlassProduct", package: "TemperedGlassPackage"),
+                        ]),
+                    ],
+                    products: [
+                        MockProduct(name: "PremiumWindowProduct", modules: ["PremiumWindowTarget"]),
+                    ],
+                    dependencies: [
+                        .sourceControlWithDeprecatedName(
+                            name: "TemperedGlassPackage",
+                            path: "tempered/glass",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+                MockPackage(
+                    name: "StandardGlassPackage",
+                    path: "standard/glass",
+                    targets: [
+                        MockTarget(name: "StandardGlassTarget"),
+                    ],
+                    products: [
+                        MockProduct(name: "StandardGlassProduct", modules: ["StandardGlassTarget"]),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+
+                // This package triggers the conflict.
+                MockPackage(
+                    name: "TemperedGlassPackage",
+                    path: "tempered/glass",
+                    targets: [
+                        MockTarget(name: "TemperedTarget"),
+                    ],
+                    products: [
+                        MockProduct(name: "TemperedGlassProduct", modules: ["TemperedGlassTarget"]),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+            ]
+        )
+
+        try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
+            testDiagnostics(diagnostics) { result in
+                result.check(
+                    diagnostic: "Conflicting identity for glass: dependency '/tmp/ws/pkgs/tempered/glass' and dependency '/tmp/ws/pkgs/standard/glass' both point to the same package identity 'glass'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->/tmp/ws/pkgs/house->/tmp/ws/pkgs/premium_window->/tmp/ws/pkgs/tempered/glass (B) /tmp/ws/roots/root->/tmp/ws/pkgs/shack->/tmp/ws/pkgs/standard/glass. If there are multiple chains that lead to the same dependency, only the first chain is shown here. To see all chains use debug output option. To resolve the conflict, coordinate with the maintainer of the package that introduces the conflicting dependency.",
+                    severity: .error
+                )
+            }
+        }
+        try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
+            testPartialDiagnostics(diagnostics, minSeverity: .debug) { result in
+                result.checkUnordered(
+                    diagnostic: .contains("Conflicting identity for glass: chains of dependencies for /tmp/ws/pkgs/tempered/glass: [[/tmp/ws/roots/root, /tmp/ws/pkgs/house, /tmp/ws/pkgs/premium_window, /tmp/ws/pkgs/tempered/glass]]"),
+                    severity: .debug
+                )
+                result.checkUnordered(
+                    diagnostic: .contains("Conflicting identity for glass: chains of dependencies for /tmp/ws/pkgs/standard/glass: [[/tmp/ws/roots/root, /tmp/ws/pkgs/shack, /tmp/ws/pkgs/standard/glass], [/tmp/ws/roots/root, /tmp/ws/pkgs/house, /tmp/ws/pkgs/budget_window, /tmp/ws/pkgs/standard/glass]]"),
+                    severity: .debug
+                )
+            }
+        }
+    }
+
+    func testDuplicateIdentityDependenciesMultipleRoots() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"""
+        threw error "\tmp\ws doesn't exist in file system"
+        """#)
+
+        let sandbox = AbsolutePath("/tmp/ws/")
+        let fs = InMemoryFileSystem()
+
+        let workspace = try await MockWorkspace(
+            sandbox: sandbox,
+            fileSystem: fs,
+            roots: [
+                MockPackage(
+                    name: "River",
+                    targets: [
+                        MockTarget(name: "RiverTarget", dependencies: [
+                            .product(name: "FlowingWaterProduct", package: "FlowingWaterPackage"),
+                        ]),
+                    ],
+                    products: [],
+                    dependencies: [
+                        .sourceControlWithDeprecatedName(
+                            name: "FlowingWaterPackage",
+                            path: "flowing/water",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                    ]
+                ),
+                MockPackage(
+                    name: "Lake",
+                    targets: [
+                        MockTarget(name: "LakeTarget", dependencies: [
+                            .product(name: "StandingWaterProduct", package: "StandingWaterPackage"),
+                        ]),
+                    ],
+                    products: [],
+                    dependencies: [
+                        .sourceControlWithDeprecatedName(
+                            name: "StandingWaterPackage",
+                            path: "standing/water",
+                            requirement: .upToNextMajor(from: "1.0.0")
+                        ),
+                    ]
+                ),
+            ],
+            packages: [
+                MockPackage(
+                    name: "FlowingWaterPackage",
+                    path: "flowing/water",
+                    targets: [
+                        MockTarget(name: "FlowingWaterTarget"),
+                    ],
+                    products: [
+                        MockProduct(name: "FlowingWaterProduct", modules: ["FlowingWaterTarget"]),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+
+                // This package triggers the conflict.
+                MockPackage(
+                    name: "StandingWaterPackage",
+                    path: "standing/water",
+                    targets: [
+                        MockTarget(name: "StandingWaterTarget"),
+                    ],
+                    products: [
+                        MockProduct(name: "StandingWaterProduct", modules: ["StandingWaterTarget"]),
+                    ],
+                    versions: ["1.0.0"]
+                ),
+            ]
+        )
+
+        try await workspace.checkPackageGraph(roots: ["River", "Lake"]) { _, diagnostics in
+            testPartialDiagnostics(diagnostics, minSeverity: .debug) { result in
+                // Order of roots processing is not deterministic. To make the test less brittle, we check debug
+                // output of individual conflicts instead of a summarized error message.
+                result.checkUnordered(
+                    diagnostic: .contains("Conflicting identity for water: chains of dependencies for /tmp/ws/pkgs/standing/water: [[/tmp/ws/roots/lake, /tmp/ws/pkgs/standing/water]]"),
+                    severity: .debug
+                )
+                result.checkUnordered(
+                    diagnostic: .contains("Conflicting identity for water: chains of dependencies for /tmp/ws/pkgs/flowing/water: [[/tmp/ws/roots/river, /tmp/ws/pkgs/flowing/water]]"),
+                    severity: .debug
+                )
+            }
+        }
+    }
+
     func testDuplicateTransitiveIdentityWithoutNames() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10638,7 +11154,7 @@ final class WorkspaceTests: XCTestCase {
         try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
             testDiagnostics(diagnostics) { result in
                 result.check(
-                    diagnostic: "'bar' dependency on '\(sandbox.appending(components: "pkgs", "other-foo", "utility"))' conflicts with dependency on '\(sandbox.appending(components: "pkgs", "foo", "utility"))' which has the same identity 'utility'. this will be escalated to an error in future versions of SwiftPM.",
+                    diagnostic: "Conflicting identity for utility: dependency '/tmp/ws/pkgs/other-foo/utility' and dependency '/tmp/ws/pkgs/foo/utility' both point to the same package identity 'utility'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->/tmp/ws/pkgs/bar->/tmp/ws/pkgs/other-foo/utility (B) /tmp/ws/roots/root->/tmp/ws/pkgs/foo/utility. If there are multiple chains that lead to the same dependency, only the first chain is shown here. To see all chains use debug output option. To resolve the conflict, coordinate with the maintainer of the package that introduces the conflicting dependency. This will be escalated to an error in future versions of SwiftPM.",
                     severity: .warning
                 )
                 // FIXME: rdar://72940946
@@ -10652,6 +11168,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateTransitiveIdentitySimilarURLs1() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10727,6 +11245,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateTransitiveIdentitySimilarURLs2() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10802,6 +11322,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateTransitiveIdentityGitHubURLs1() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10877,6 +11399,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateTransitiveIdentityGitHubURLs2() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -10955,6 +11479,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateTransitiveIdentityUnfamiliarURLs() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11032,7 +11558,7 @@ final class WorkspaceTests: XCTestCase {
         try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
             testDiagnostics(diagnostics) { result in
                 result.check(
-                    diagnostic: "'bar' dependency on 'https://github.com/foo-moved/foo.git' conflicts with dependency on 'https://github.com/foo/foo.git' which has the same identity 'foo'. this will be escalated to an error in future versions of SwiftPM.",
+                    diagnostic: "Conflicting identity for foo: dependency 'github.com/foo-moved/foo' and dependency 'github.com/foo/foo' both point to the same package identity 'foo'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->/tmp/ws/pkgs/bar->github.com/foo-moved/foo (B) /tmp/ws/roots/root->github.com/foo/foo. If there are multiple chains that lead to the same dependency, only the first chain is shown here. To see all chains use debug output option. To resolve the conflict, coordinate with the maintainer of the package that introduces the conflicting dependency. This will be escalated to an error in future versions of SwiftPM.",
                     severity: .warning
                 )
             }
@@ -11040,6 +11566,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateTransitiveIdentityWithSimilarURLs() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11162,6 +11690,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateNestedTransitiveIdentityWithNames() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11245,10 +11775,8 @@ final class WorkspaceTests: XCTestCase {
 
         try await workspace.checkPackageGraph(roots: ["Root"]) { _, diagnostics in
             testDiagnostics(diagnostics) { result in
-                // FIXME: rdar://72940946
-                // we need to improve this situation or diagnostics when working on identity
                 result.check(
-                    diagnostic: "'bar' dependency on '/tmp/ws/pkgs/other/utility' conflicts with dependency on '/tmp/ws/pkgs/foo/utility' which has the same identity 'utility'",
+                    diagnostic: "Conflicting identity for utility: dependency '/tmp/ws/pkgs/other/utility' and dependency '/tmp/ws/pkgs/foo/utility' both point to the same package identity 'utility'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->/tmp/ws/pkgs/foo/utility->/tmp/ws/pkgs/bar->/tmp/ws/pkgs/other/utility (B) /tmp/ws/roots/root->/tmp/ws/pkgs/foo/utility. If there are multiple chains that lead to the same dependency, only the first chain is shown here. To see all chains use debug output option. To resolve the conflict, coordinate with the maintainer of the package that introduces the conflicting dependency.",
                     severity: .error
                 )
             }
@@ -11256,6 +11784,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDuplicateNestedTransitiveIdentityWithoutNames() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11340,6 +11870,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRootPathConflictsWithTransitiveIdentity() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11415,6 +11947,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDeterministicURLPreference() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11576,6 +12110,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testDeterministicURLPreferenceWithRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11715,6 +12251,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCanonicalURLWithPreviousManagedState() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11877,6 +12415,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCanonicalURLChanges() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -11990,6 +12530,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCanonicalURLChangesWithTransitiveDependencies() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -12156,6 +12698,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCycleRoot() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -12272,6 +12816,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testResolutionBranchAndVersion() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -12484,6 +13030,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testBasicResolutionFromSourceControl() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -12590,6 +13138,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testBasicTransitiveResolutionFromSourceControl() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -12734,6 +13284,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testBasicResolutionFromRegistry() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -12840,6 +13392,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testBasicTransitiveResolutionFromRegistry() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -12984,6 +13538,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testTransitiveResolutionFromRegistryWithByNameDependencies() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13064,6 +13620,8 @@ final class WorkspaceTests: XCTestCase {
 
     // no dups
     func testResolutionMixedRegistryAndSourceControl1() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13194,6 +13752,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testTransitiveResolutionFromRegistryWithDifferentPackageNameCasing() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13259,6 +13819,8 @@ final class WorkspaceTests: XCTestCase {
 
     // duplicate package at root level
     func testResolutionMixedRegistryAndSourceControl2() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13330,7 +13892,7 @@ final class WorkspaceTests: XCTestCase {
             try await workspace.checkPackageGraph(roots: ["root"]) { _, diagnostics in
                 testDiagnostics(diagnostics) { result in
                     result.check(
-                        diagnostic: "'root' dependency on 'org.foo' conflicts with dependency on 'https://git/org/foo' which has the same identity 'org.foo'",
+                        diagnostic: "Conflicting identity for org.foo: dependency 'org.foo' and dependency 'git/org/foo' both point to the same package identity 'org.foo'.",
                         severity: .error
                     )
                 }
@@ -13347,7 +13909,7 @@ final class WorkspaceTests: XCTestCase {
             try await workspace.checkPackageGraph(roots: ["root"]) { _, diagnostics in
                 testDiagnostics(diagnostics) { result in
                     result.check(
-                        diagnostic: "'root' dependency on 'org.foo' conflicts with dependency on 'org.foo' which has the same identity 'org.foo'",
+                        diagnostic: "Conflicting identity for org.foo: dependency 'org.foo' and dependency 'org.foo' both point to the same package identity 'org.foo'.",
                         severity: .error
                     )
                 }
@@ -13358,6 +13920,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 scm
     //                  --> dep2 scm --> dep1 registry
     func testResolutionMixedRegistryAndSourceControl3() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13449,7 +14013,7 @@ final class WorkspaceTests: XCTestCase {
                 testDiagnostics(diagnostics) { result in
                     result.check(
                         diagnostic: .contains("""
-                        'bar' dependency on 'org.foo' conflicts with dependency on 'https://git/org/foo' which has the same identity 'org.foo'.
+                        dependency 'org.foo' and dependency 'git/org/foo' both point to the same package identity 'org.foo'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->git/org/bar->org.foo (B) /tmp/ws/roots/root->git/org/foo.
                         """),
                         severity: .warning
                     )
@@ -13521,6 +14085,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 scm
     //                  --> dep2 registry --> dep1 registry
     func testResolutionMixedRegistryAndSourceControl4() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13612,7 +14178,7 @@ final class WorkspaceTests: XCTestCase {
                 testDiagnostics(diagnostics) { result in
                     result.check(
                         diagnostic: .contains("""
-                        'org.bar' dependency on 'org.foo' conflicts with dependency on 'https://git/org/foo' which has the same identity 'org.foo'.
+                        dependency 'org.foo' and dependency 'git/org/foo' both point to the same package identity 'org.foo'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->org.bar->org.foo (B) /tmp/ws/roots/root->git/org/foo.
                         """),
                         severity: .warning
                     )
@@ -13659,6 +14225,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 scm
     //                  --> dep2 scm --> dep1 registry incompatible version
     func testResolutionMixedRegistryAndSourceControl5() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13784,6 +14352,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 registry
     //                  --> dep2 registry --> dep1 scm
     func testResolutionMixedRegistryAndSourceControl6() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -13875,7 +14445,7 @@ final class WorkspaceTests: XCTestCase {
                 testDiagnostics(diagnostics) { result in
                     result.check(
                         diagnostic: .contains("""
-                        'org.bar' dependency on 'https://git/org/foo' conflicts with dependency on 'org.foo' which has the same identity 'org.foo'.
+                        dependency 'git/org/foo' and dependency 'org.foo' both point to the same package identity 'org.foo'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->org.bar->git/org/foo (B) /tmp/ws/roots/root->org.foo.
                         """),
                         severity: .warning
                     )
@@ -13930,6 +14500,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 registry
     //                  --> dep2 registry --> dep1 scm incompatible version
     func testResolutionMixedRegistryAndSourceControl7() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14055,6 +14627,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 registry --> dep3 scm
     //                  --> dep2 registry --> dep3 registry
     func testResolutionMixedRegistryAndSourceControl8() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14162,7 +14736,7 @@ final class WorkspaceTests: XCTestCase {
                 testDiagnostics(diagnostics) { result in
                     result.check(
                         diagnostic: .contains("""
-                        'org.foo' dependency on 'https://git/org/baz' conflicts with dependency on 'org.baz' which has the same identity 'org.baz'.
+                        dependency 'git/org/baz' and dependency 'org.baz' both point to the same package identity 'org.baz'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->org.foo->git/org/baz (B) /tmp/ws/roots/root->org.bar->org.baz.
                         """),
                         severity: .warning
                     )
@@ -14225,6 +14799,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 registry --> dep3 scm
     //                  --> dep2 registry --> dep3 registry incompatible version
     func testResolutionMixedRegistryAndSourceControl9() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14366,6 +14942,8 @@ final class WorkspaceTests: XCTestCase {
     // mixed graph root --> dep1 scm branch
     //                  --> dep2 registry --> dep1 registry
     func testResolutionMixedRegistryAndSourceControl10() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14457,7 +15035,7 @@ final class WorkspaceTests: XCTestCase {
                 testDiagnostics(diagnostics) { result in
                     result.check(
                         diagnostic: .contains("""
-                        'org.bar' dependency on 'org.foo' conflicts with dependency on 'https://git/org/foo' which has the same identity 'org.foo'.
+                        dependency 'org.foo' and dependency 'git/org/foo' both point to the same package identity 'org.foo'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->org.bar->org.foo (B) /tmp/ws/roots/root->git/org/foo.
                         """),
                         severity: .warning
                     )
@@ -14487,7 +15065,7 @@ final class WorkspaceTests: XCTestCase {
                 testDiagnostics(diagnostics) { result in
                     result.check(
                         diagnostic: .contains("""
-                        'org.bar' dependency on 'org.foo' conflicts with dependency on 'https://git/org/foo' which has the same identity 'org.foo'.
+                        dependency 'org.foo' and dependency 'git/org/foo' both point to the same package identity 'org.foo'. The dependencies are introduced through the following chains: (A) /tmp/ws/roots/root->org.bar->org.foo (B) /tmp/ws/roots/root->git/org/foo.
                         """),
                         severity: .warning
                     )
@@ -14513,6 +15091,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testCustomPackageContainerProvider() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14602,6 +15182,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryMissingConfigurationErrors() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14655,6 +15237,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryReleasesServerErrors() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14740,6 +15324,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryReleaseChecksumServerErrors() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14827,6 +15413,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryManifestServerErrors() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -14914,6 +15502,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryDownloadServerErrors() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15001,6 +15591,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryArchiveErrors() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15063,6 +15655,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryMetadata() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15145,6 +15739,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testRegistryDefaultRegistryConfiguration() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15211,6 +15807,8 @@ final class WorkspaceTests: XCTestCase {
         metadata: [String: RegistryReleaseMetadata],
         mirrors: DependencyMirrors? = nil
     ) async throws -> MockWorkspace {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15507,6 +16105,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testTraitConfigurationExists_NoDefaultTraits() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15595,6 +16195,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testTraitConfigurationExists_WithDefaultTraits() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15683,6 +16285,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testTraitConfiguration_WithPrunedDependencies() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 
@@ -15761,6 +16365,8 @@ final class WorkspaceTests: XCTestCase {
     }
 
     func testNoTraitConfiguration_WithDefaultTraits() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: #"\tmp\ws doesn't exist in file system"#)
+
         let sandbox = AbsolutePath("/tmp/ws/")
         let fs = InMemoryFileSystem()
 

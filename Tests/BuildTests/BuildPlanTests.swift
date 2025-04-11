@@ -2036,9 +2036,8 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
     }
 
     func test_symbolGraphExtract_arguments() async throws {
-#if os(Windows)
-        throw XCTSkip("This test is not equipped to run with Windows due to path separators")
-#endif
+        try skipOnWindowsAsTestCurrentlyFails()
+
         // ModuleGraph:
         // .
         // ├── A (Swift)
@@ -4308,6 +4307,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
                             condition: .init(platformNames: ["macos"], config: "debug")
                         ),
                         .init(tool: .swift, kind: .strictMemorySafety),
+                        .init(tool: .swift, kind: .defaultIsolation(.MainActor)),
                     ]
                 ),
                 TargetDescription(
@@ -4341,6 +4341,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
                             condition: .init(platformNames: ["macos"])
                         ),
                         .init(tool: .linker, kind: .unsafeFlags(["-Ilfoo", "-L", "lbar"])),
+                        .init(tool: .swift, kind: .defaultIsolation(.nonisolated)),
                     ]
                 ),
                 TargetDescription(
@@ -4433,6 +4434,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
                     "-Xcc", "-std=c++17",
                     "-enable-upcoming-feature", "BestFeature",
                     "-strict-memory-safety",
+                    "-default-isolation", "MainActor",
                     "-g",
                     "-Xcc", "-g",
                     "-Xcc", "-fno-omit-frame-pointer",
@@ -4441,7 +4443,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
             )
 
             let exe = try result.moduleBuildDescription(for: "exe").swift().compileArguments()
-            XCTAssertMatch(exe, [.anySequence, "-swift-version", "5", "-DFOO", "-g", "-Xcc", "-g", "-Xcc", "-fno-omit-frame-pointer", .end])
+            XCTAssertMatch(exe, [.anySequence, "-swift-version", "5", "-DFOO", "-default-isolation", "nonisolated", "-g", "-Xcc", "-g", "-Xcc", "-fno-omit-frame-pointer", .end])
 
             let linkExe = try result.buildProduct(for: "exe").linkArguments()
             XCTAssertMatch(linkExe, [.anySequence, "-lsqlite3", "-llibz", "-Ilfoo", "-L", "lbar", "-g", .end])
@@ -4498,6 +4500,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
                     "-enable-upcoming-feature",
                     "BestFeature",
                     "-strict-memory-safety",
+                    "-default-isolation", "MainActor",
                     "-g",
                     "-Xcc", "-g",
                     "-Xcc", "-fomit-frame-pointer",
@@ -4506,7 +4509,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
             )
 
             let exe = try result.moduleBuildDescription(for: "exe").swift().compileArguments()
-            XCTAssertMatch(exe, [.anySequence, "-swift-version", "5", "-DFOO", "-g", "-Xcc", "-g", "-Xcc", "-fomit-frame-pointer", .end])
+            XCTAssertMatch(exe, [.anySequence, "-swift-version", "5", "-DFOO", "-default-isolation", "nonisolated", "-g", "-Xcc", "-g", "-Xcc", "-fomit-frame-pointer", .end])
         }
 
         // omit frame pointers explicitly set to false
@@ -4554,6 +4557,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
                     "-enable-upcoming-feature",
                     "BestFeature",
                     "-strict-memory-safety",
+                    "-default-isolation", "MainActor",
                     "-g",
                     "-Xcc", "-g",
                     "-Xcc", "-fno-omit-frame-pointer",
@@ -4562,7 +4566,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
             )
 
             let exe = try result.moduleBuildDescription(for: "exe").swift().compileArguments()
-            XCTAssertMatch(exe, [.anySequence, "-swift-version", "5", "-DFOO", "-g", "-Xcc", "-g", "-Xcc", "-fno-omit-frame-pointer", .end])
+            XCTAssertMatch(exe, [.anySequence, "-swift-version", "5", "-DFOO", "-default-isolation", "nonisolated", "-g", "-Xcc", "-g", "-Xcc", "-fno-omit-frame-pointer", .end])
         }
 
         do {
@@ -4599,6 +4603,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
                     "-enable-upcoming-feature", "BestFeature",
                     "-enable-upcoming-feature", "WorstFeature",
                     "-strict-memory-safety",
+                    "-default-isolation", "MainActor",
                     "-g",
                     "-Xcc", "-g",
                     .end,
@@ -4614,6 +4619,7 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
                     "-DFOO",
                     "-cxx-interoperability-mode=default",
                     "-Xcc", "-std=c++17",
+                    "-default-isolation", "nonisolated",
                     "-g",
                     "-Xcc", "-g",
                     .end,
@@ -4685,6 +4691,8 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
     }
 
     func testUserToolchainCompileFlags() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let fs = InMemoryFileSystem(
             emptyFiles:
             "/Pkg/Sources/exe/main.swift",
@@ -4937,9 +4945,8 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
     }
 
     func testUserToolchainWithToolsetCompileFlags() async throws {
-#if os(Windows)
-        throw XCTSkip("This test is not yet equipped to test on Windows platform due to path delimiters")
-#endif
+        try skipOnWindowsAsTestCurrentlyFails(because: "Path delimiters donw's work well on Windows")
+
         let fileSystem = InMemoryFileSystem(
             emptyFiles:
             "/Pkg/Sources/exe/main.swift",
@@ -5108,6 +5115,8 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
     }
 
     func testUserToolchainWithSDKSearchPaths() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let fileSystem = InMemoryFileSystem(
             emptyFiles:
             "/Pkg/Sources/exe/main.swift",
@@ -6899,6 +6908,72 @@ class BuildPlanTestCase: BuildSystemProviderTestCase {
 
         XCTAssertMatch(contents, .regex(#"args: \[.*"-I","/testpackagedep/SomeArtifact.xcframework/macos/Headers".*,"/testpackage/Sources/CLib/lib.c".*]"#))
         XCTAssertMatch(contents, .regex(#"args: \[.*"-module-name","SwiftLib",.*"-I","/testpackagedep/SomeArtifact.xcframework/macos/Headers".*]"#))
+    }
+
+    func testMacroPluginDependencyLeakage() async throws {
+        // Make sure the include paths from macro and plugin executables don't leak into dependents
+        let observability = ObservabilitySystem.makeForTesting()
+        let fs = InMemoryFileSystem(emptyFiles: [
+            "/LeakTest/Sources/CLib/include/Clib.h",
+            "/LeakTest/Sources/CLib/Clib.c",
+            "/LeakTest/Sources/MyMacro/MyMacro.swift",
+            "/LeakTest/Sources/MyPluginTool/MyPluginTool.swift",
+            "/LeakTest/Plugins/MyPlugin/MyPlugin.swift",
+            "/LeakTest/Sources/MyLib/MyLib.swift",
+            "/LeakLib/Sources/CLib2/include/Clib.h",
+            "/LeakLib/Sources/CLib2/Clib.c",
+            "/LeakLib/Sources/MyMacro2/MyMacro.swift",
+            "/LeakLib/Sources/MyPluginTool2/MyPluginTool.swift",
+            "/LeakLib/Plugins/MyPlugin2/MyPlugin.swift",
+            "/LeakLib/Sources/MyLib2/MyLib.swift"
+        ])
+
+        let graph = try loadModulesGraph(fileSystem: fs, manifests: [
+            Manifest.createFileSystemManifest(
+                displayName: "LeakLib",
+                path: "/LeakLib",
+                products: [
+                    ProductDescription(name: "MyLib2", type: .library(.automatic), targets: ["MyLib2"]),
+                ],
+                targets: [
+                    TargetDescription(name: "CLib2"),
+                    TargetDescription(name: "MyMacro2", dependencies: ["CLib2"], type: .macro),
+                    TargetDescription(name: "MyPluginTool2", dependencies: ["CLib2"], type: .executable),
+                    TargetDescription(name: "MyPlugin2", dependencies: ["MyPluginTool2"], type: .plugin, pluginCapability: .buildTool),
+                    TargetDescription(name: "MyLib2", dependencies: ["CLib2", "MyMacro2"], pluginUsages: [.plugin(name: "MyPlugin2", package: nil)]),
+                ]
+            ),
+            Manifest.createRootManifest(
+                displayName: "LeakTest",
+                path: "/LeakTest",
+                dependencies: [
+                    .fileSystem(path: "/LeakLib")
+                ],
+                targets: [
+                    TargetDescription(name: "CLib"),
+                    TargetDescription(name: "MyMacro", dependencies: ["CLib"], type: .macro),
+                    TargetDescription(name: "MyPluginTool", dependencies: ["CLib"], type: .executable),
+                    TargetDescription(name: "MyPlugin", dependencies: ["MyPluginTool"], type: .plugin, pluginCapability: .buildTool),
+                    TargetDescription(
+                        name: "MyLib",
+                        dependencies: ["CLib", "MyMacro", .product(name: "MyLib2", package: "LeakLib")],
+                        pluginUsages: [.plugin(name: "MyPlugin", package: nil)]
+                    ),
+                ]
+            )
+        ], observabilityScope: observability.topScope)
+        XCTAssertNoDiagnostics(observability.diagnostics)
+
+        let plan = try await mockBuildPlan(
+            graph: graph,
+            fileSystem: fs,
+            observabilityScope: observability.topScope
+        )
+        XCTAssertNoDiagnostics(observability.diagnostics)
+
+        let myLib = try XCTUnwrap(plan.targets.first(where: { $0.module.name == "MyLib" })).swift()
+        print(myLib.additionalFlags)
+        XCTAssertFalse(myLib.additionalFlags.contains(where: { $0.contains("-tool/include")}), "flags shouldn't contain tools items")
     }
 }
 

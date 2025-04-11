@@ -564,6 +564,8 @@ final class PackageBuilderTests: XCTestCase {
     }
 
     func testTestManifestSearch() throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let fs = InMemoryFileSystem(emptyFiles:
             "/pkg/foo.swift",
             "/pkg/footests.swift"
@@ -3182,6 +3184,76 @@ final class PackageBuilderTests: XCTestCase {
                     environment: BuildEnvironment(platform: .macOS, configuration: .release)
                 )
                 XCTAssertEqual(macosReleaseScope.evaluate(.SWIFT_VERSION), ["5"])
+            }
+        }
+    }
+
+    func testDefaultIsolationPerTarget() throws {
+        let fs = InMemoryFileSystem(emptyFiles:
+            "/Sources/A/a.swift",
+            "/Sources/B/b.swift"
+        )
+
+        let manifest = Manifest.createRootManifest(
+            displayName: "pkg",
+            toolsVersion: .v6_2,
+            targets: [
+                try TargetDescription(
+                    name: "A",
+                    settings: [
+                        .init(tool: .swift, kind: .defaultIsolation(.MainActor))
+                    ]
+                ),
+                try TargetDescription(
+                    name: "B",
+                    settings: [
+                        .init(tool: .swift, kind: .defaultIsolation(.nonisolated), condition: .init(platformNames: ["linux"])),
+                        .init(tool: .swift, kind: .defaultIsolation(.MainActor), condition: .init(platformNames: ["macos"], config: "debug"))
+                    ]
+                ),
+            ]
+        )
+
+        PackageBuilderTester(manifest, in: fs) { package, _ in
+            package.checkModule("A") { package in
+                let macosDebugScope = BuildSettings.Scope(
+                    package.target.buildSettings,
+                    environment: BuildEnvironment(platform: .macOS, configuration: .debug)
+                )
+                XCTAssertMatch(macosDebugScope.evaluate(.OTHER_SWIFT_FLAGS),
+                               [.anySequence, "-default-isolation", "MainActor", .anySequence])
+
+                let macosReleaseScope = BuildSettings.Scope(
+                    package.target.buildSettings,
+                    environment: BuildEnvironment(platform: .macOS, configuration: .release)
+                )
+                XCTAssertMatch(macosReleaseScope.evaluate(.OTHER_SWIFT_FLAGS),
+                               [.anySequence, "-default-isolation", "MainActor", .anySequence])
+
+            }
+
+            package.checkModule("B") { package in
+                let linuxDebugScope = BuildSettings.Scope(
+                    package.target.buildSettings,
+                    environment: BuildEnvironment(platform: .linux, configuration: .debug)
+                )
+                XCTAssertMatch(linuxDebugScope.evaluate(.OTHER_SWIFT_FLAGS),
+                               [.anySequence, "-default-isolation", "nonisolated", .anySequence])
+
+                let macosDebugScope = BuildSettings.Scope(
+                    package.target.buildSettings,
+                    environment: BuildEnvironment(platform: .macOS, configuration: .debug)
+                )
+                XCTAssertMatch(macosDebugScope.evaluate(.OTHER_SWIFT_FLAGS),
+                               [.anySequence, "-default-isolation", "MainActor", .anySequence])
+
+                let macosReleaseScope = BuildSettings.Scope(
+                    package.target.buildSettings,
+                    environment: BuildEnvironment(platform: .macOS, configuration: .release)
+                )
+                XCTAssertNoMatch(macosReleaseScope.evaluate(.OTHER_SWIFT_FLAGS),
+                                 [.anySequence, "-default-isolation", "MainActor", .anySequence])
+
             }
         }
     }

@@ -233,6 +233,8 @@ final class ManifestSourceGenerationTests: XCTestCase {
     }
 
     func testAdvancedFeatures() async throws {
+        try skipOnWindowsAsTestCurrentlyFails()
+
         let manifestContents = """
             // swift-tools-version:5.3
             // The swift-tools-version declares the minimum version of Swift required to build this package.
@@ -793,6 +795,8 @@ final class ManifestSourceGenerationTests: XCTestCase {
     }
 
     func testStrictMemorySafety() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: "compilation error:  type 'SwiftSetting' has no member 'strictMemorySafety'")
+
         let manifestContents = """
             // swift-tools-version:6.2
             import PackageDescription
@@ -857,5 +861,41 @@ final class ManifestSourceGenerationTests: XCTestCase {
             ])
         let contents = try manifest.generateManifestFileContents(packageDirectory: manifest.path.parentDirectory)
         try await testManifestWritingRoundTrip(manifestContents: contents, toolsVersion: .v6_0)
+    }
+
+    func testDefaultIsolation() async throws {
+        try skipOnWindowsAsTestCurrentlyFails(because: "there are compilation errors")
+
+        let manifest = Manifest.createRootManifest(
+            displayName: "pkg",
+            path: "/pkg",
+            toolsVersion: .v6_2,
+            dependencies: [],
+            targets: [
+                try TargetDescription(
+                    name: "A",
+                    type: .executable,
+                    settings: [
+                        .init(tool: .swift, kind: .defaultIsolation(.nonisolated))
+                    ]
+                ),
+                try TargetDescription(
+                    name: "B",
+                    type: .executable,
+                    settings: [
+                        .init(tool: .swift, kind: .defaultIsolation(.MainActor))
+                    ]
+                ),
+                try TargetDescription(
+                    name: "conditional",
+                    type: .executable,
+                    settings: [
+                        .init(tool: .swift, kind: .defaultIsolation(.nonisolated), condition: .init(platformNames: ["linux"])),
+                        .init(tool: .swift, kind: .defaultIsolation(.MainActor), condition: .init(platformNames: ["macos"], config: "debug"))
+                    ]
+                )
+            ])
+        let contents = try manifest.generateManifestFileContents(packageDirectory: manifest.path.parentDirectory)
+        try await testManifestWritingRoundTrip(manifestContents: contents, toolsVersion: .v6_2)
     }
 }

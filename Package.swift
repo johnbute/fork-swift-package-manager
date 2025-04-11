@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 
 //===----------------------------------------------------------------------===//
 //
@@ -480,7 +480,7 @@ let package = Package(
                 "SPMBuildCore",
                 "PackageGraph",
             ],
-            exclude: ["CMakeLists.txt", "README.md"],
+            exclude: ["CMakeLists.txt", "README.md"]
         ),
         .target(
             /** High level functionality */
@@ -725,7 +725,7 @@ let package = Package(
 
         // MARK: Additional Test Dependencies
 
-            .target(
+            .testTarget(
                 /** SwiftPM internal build test suite support library */
                 name: "_InternalBuildTestSupport",
                 dependencies: [
@@ -734,12 +734,13 @@ let package = Package(
                     "SwiftBuildSupport",
                     "_InternalTestSupport"
                 ],
+                path: "Sources/_InternalBuildTestSupport",
                 swiftSettings: [
                     .unsafeFlags(["-static"]),
                 ]
             ),
 
-        .target(
+        .testTarget(
             /** SwiftPM internal test suite support library */
             name: "_InternalTestSupport",
             dependencies: [
@@ -754,6 +755,7 @@ let package = Package(
                 .product(name: "OrderedCollections", package: "swift-collections"),
                 "Workspace",
             ],
+            path: "./Sources/_InternalTestSupport",
             swiftSettings: [
                 .unsafeFlags(["-static"]),
             ]
@@ -970,16 +972,14 @@ if ProcessInfo.processInfo.environment["SWIFTCI_DISABLE_SDK_DEPENDENT_TESTS"] ==
 }
 #endif
 
-/// Whether swift-syntax is being built as a single dynamic library instead of as a separate library per module.
-///
-/// This means that the swift-syntax symbols don't need to be statically linked, which allows us to stay below the
-/// maximum number of exported symbols on Windows, in turn allowing us to build sourcekit-lsp using SwiftPM on Windows
-/// and run its tests.
-var buildDynamicSwiftSyntaxLibrary: Bool {
-  ProcessInfo.processInfo.environment["SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY"] != nil
-}
 
 func swiftSyntaxDependencies(_ names: [String]) -> [Target.Dependency] {
+  /// Whether swift-syntax is being built as a single dynamic library instead of as a separate library per module.
+  ///
+  /// This means that the swift-syntax symbols don't need to be statically linked, which allows us to stay below the
+  /// maximum number of exported symbols on Windows, in turn allowing us to build sourcekit-lsp using SwiftPM on Windows
+  /// and run its tests.
+  let buildDynamicSwiftSyntaxLibrary = ProcessInfo.processInfo.environment["SWIFTSYNTAX_BUILD_DYNAMIC_LIBRARY"] != nil
   if buildDynamicSwiftSyntaxLibrary {
     return [.product(name: "_SwiftSyntaxDynamic", package: "swift-syntax")]
   } else {
